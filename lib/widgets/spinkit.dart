@@ -6,8 +6,14 @@ class Spinkit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SpinKitFoldingCube(
-      color: Colors.white,
+    return Column(
+      children: [
+        Center(
+          child: const SpinKitFoldingCube(
+            color: Colors.red,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dictionary_app/services/dictionaryService.dart';
 import 'package:flutter_dictionary_app/viewmodels/meaningViewModel.dart';
 
-enum Status { initial, loading, notfound, succes }
+enum Status { initial, loading, notfound, success }
 
 class MeaningListViewModel extends ChangeNotifier {
   MeaningViewModel meaningViewModel = MeaningViewModel('', []);
   Status status = Status.initial;
+  notifyListeners();
   Future<void> getMeanings(String word) async {
-    notifyListeners();
     status = Status.loading;
+    notifyListeners();
     List<String> meanings = await DictionaryService().searchWord(word);
+    notifyListeners();
     meaningViewModel = MeaningViewModel(word, meanings);
-    status = meanings.isNotEmpty ? Status.succes : Status.notfound;
+    notifyListeners();
+    status = meanings.isNotEmpty ? Status.success : Status.notfound;
     notifyListeners();
   }
 }
